@@ -42,4 +42,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/mailable', function () {
+    $lead = Lead::find(1);
+
+    return new \App\Mail\NewLeadMessage($lead);
+});
+
 require __DIR__.'/auth.php';
